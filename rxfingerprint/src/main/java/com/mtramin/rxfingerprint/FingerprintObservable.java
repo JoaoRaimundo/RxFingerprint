@@ -28,7 +28,6 @@ import android.os.CancellationSignal;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
-import android.util.Log;
 
 import com.mtramin.rxfingerprint.data.FingerprintAuthenticationException;
 import com.mtramin.rxfingerprint.data.FingerprintUnavailableException;
@@ -61,7 +60,7 @@ abstract class FingerprintObservable<T> implements ObservableOnSubscribe<T> {
 		// authentication action which will immediately onError and unsubscribe the 2nd
 		// authentication action.
 		if (context instanceof Application) {
-			Log.w("RxFingerprint", "Passing an Application Context to RxFingerprint might cause issues when the authentication is active and the application changes orientation. Consider passing an Activity Context.");
+			Logger.warn("Passing an Application Context to RxFingerprint might cause issues when the authentication is active and the application changes orientation. Consider passing an Activity Context.");
 		}
 		this.context = context;
 	}

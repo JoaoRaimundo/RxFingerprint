@@ -24,7 +24,6 @@ import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 
 import com.mtramin.rxfingerprint.data.FingerprintAuthenticationResult;
 import com.mtramin.rxfingerprint.data.FingerprintDecryptionResult;
@@ -254,7 +253,7 @@ public class RxFingerprint {
         try {
             return (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
         } catch (Exception | NoClassDefFoundError e) {
-            Log.e("RxFingerprint", "Device with SDK >=23 doesn't provide Fingerprint APIs", e);
+            Logger.error("Device with SDK >=23 doesn't provide Fingerprint APIs", e);
         }
         return null;
     }

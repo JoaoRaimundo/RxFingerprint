@@ -24,7 +24,6 @@ import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -84,8 +83,8 @@ class CryptoProvider {
 	Cipher initEncryptionCipher() throws IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException, InvalidKeyException, InvalidAlgorithmParameterException, NoSuchPaddingException, NoSuchProviderException, KeyStoreException {
 		try {
 			return cipherForEncryption();
-		} catch (KeyPermanentlyInvalidatedException e) {
-			Log.w("RxFingerprint", "Renewing invalidated key.");
+		} catch (KeyPermanentlyInvalidatedException ignored) {
+			Logger.warn("Renewing invalidated key.");
 			removeKey(keyName);
 			return cipherForEncryption();
 		}
